@@ -29,15 +29,15 @@ OWNER_ID = int(os.environ.get("OWNER_ID", "7238072452")) # Owner id
 #--------------------------------------------
 PORT = os.environ.get("PORT", "8080")
 #--------------------------------------------
-DB_URI = os.environ.get("DATABASE_URL", "")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://kahana:srk@cluster0.njozzhq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
 DB_NAME = os.environ.get("DATABASE_NAME", "Krishna")
 #--------------------------------------------
 FSUB_LINK_EXPIRY = int(os.getenv("FSUB_LINK_EXPIRY", "10"))  # 0 means no expiry
 BAN_SUPPORT = os.environ.get("BAN_SUPPORT", "https://t.me/SECRECT_BOT_UPDATES")
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "200"))
 #--------------------------------------------
-START_PIC = os.environ.get("START_PIC", "https://telegra.ph/file/ec17880d61180d3312d6a.jpg")
-FORCE_PIC = os.environ.get("FORCE_PIC", "https://telegra.ph/file/e292b12890b8b4b9dcbd1.jpg")
+START_PIC = os.environ.get("START_PIC", "https://image.tmdb.org/t/p/original/ud9r608Qt4KVqlH39jHfWkAFAn5.jpg")
+FORCE_PIC = os.environ.get("FORCE_PIC", "https://image.tmdb.org/t/p/original/wXtS2qD4wXN1xK6IAc4jMPIsnSl.jpg")
 #--------------------------------------------
 
 #--------------------------------------------
