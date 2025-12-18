@@ -30,7 +30,7 @@ OWNER_ID = int(os.environ.get("OWNER_ID", "5579479179")) # Owner id
 PORT = os.environ.get("PORT", "8001")
 #--------------------------------------------
 DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://musicbhaikon9910:krishna@cluster0.cwvegmt.mongodb.net/")
-DB_NAME = os.environ.get("DATABASE_NAME", "flytonfileshre1")
+DB_NAME = os.environ.get("DATABASE_NAME", "flytoonfileshrete")
 #--------------------------------------------
 FSUB_LINK_EXPIRY = int(os.getenv("FSUB_LINK_EXPIRY", "300"))  # 0 means no expiry
 BAN_SUPPORT = os.environ.get("BAN_SUPPORT", "https://t.me/SECRECT_BOT_UPDATES")
