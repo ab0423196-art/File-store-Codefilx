@@ -77,14 +77,14 @@ async def cb_handler(client: Bot, query: CallbackQuery):
 
         stats_text = (
             "<b>⚙️ Cᴏɴғɪɢᴜʀᴀᴛɪᴏɴs</b>\n"
-            f"◈ ᴛᴏᴛᴀʟ ғᴏʀᴄᴇ sᴜʙ ᴄʜᴀɴɴᴇʟ:  {len(channels)}\n"
+            f"<blockquote expandable>◈ ᴛᴏᴛᴀʟ ғᴏʀᴄᴇ sᴜʙ ᴄʜᴀɴɴᴇʟ:  {len(channels)}\n"
             f"◈ ᴛᴏᴛᴀʟ ᴀᴅᴍɪɴs:  {len(admins)}\n"
             f"◈ ᴛᴏᴛᴀʟ ʙᴀɴɴᴇᴅ ᴜsᴇʀs:  {len(banned_users)}\n"
             f"◈ ᴀᴜᴛᴏ ᴅᴇʟᴇᴛᴇ ᴍᴏᴅᴇ:  {auto_delete_mode}\n"
             f"◈ ᴘʀᴏᴛᴇᴄᴛ ᴄᴏɴᴛᴇɴᴛ:  {protect_content}\n"
             f"◈ ʜɪᴅᴇ ᴄᴀᴘᴛɪᴏɴ:  {hide_caption}\n"
             f"◈ ᴄʜᴀɴɴᴇʟ ʙᴜᴛᴛᴏɴ:  {channel_button}\n"
-            f"◈ ʀᴇǫᴜᴇsᴛ ғsᴜʙ ᴍᴏᴅᴇ: {req_fsub_mode}"
+            f"◈ ʀᴇǫᴜᴇsᴛ ғsᴜʙ ᴍᴏᴅᴇ: {req_fsub_mode}</blockquote>"
         )
 
         await query.message.edit_caption(

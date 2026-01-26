@@ -67,7 +67,14 @@ async def is_sub(client, user_id, channel_id):
 
     except Exception as e:
         print(f"[!] Error in is_sub(): {e}")
-        return False
+        try:
+            await client.send_message(
+                chat_id=OWNER_ID,
+                text=f"⚠️ <b>Alert: Force Sub Error</b>\n\nI am unable to check subscription in channel <code>{channel_id}</code>.\n\n<b>Error:</b> <code>{e}</code>\n\n<i>Please ensure I am an admin in the channel and the channel ID is correct. Users are being allowed to bypass verification for this channel to prevent errors.</i>"
+            )
+        except Exception as notification_error:
+            print(f"[!] Failed to notify owner: {notification_error}")
+        return True
 
 
 async def encode(string):
