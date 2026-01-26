@@ -18,9 +18,8 @@ async def cb_handler(client: Bot, query: CallbackQuery):
     data = query.data
 
     if data == "help":
-        await query.message.edit_text(
-            text=HELP_TXT.format(first=query.from_user.first_name),
-            disable_web_page_preview=True,
+        await query.message.edit_caption(
+            caption=HELP_TXT.format(first=query.from_user.first_name),
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
                  InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data='close')]
@@ -28,9 +27,8 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         )
 
     elif data == "about":
-        await query.message.edit_text(
-            text=ABOUT_TXT.format(first=query.from_user.first_name),
-            disable_web_page_preview=True,
+        await query.message.edit_caption(
+            caption=ABOUT_TXT.format(first=query.from_user.first_name),
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
                  InlineKeyboardButton('ᴄʟᴏꜱᴇ', callback_data='close')]
@@ -38,12 +36,61 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         )
 
     elif data == "start":
-        await query.message.edit_text(
-            text=START_MSG.format(first=query.from_user.first_name),
-            disable_web_page_preview=True,
+        await query.message.edit_caption(
+            caption=START_MSG.format(
+                first=query.from_user.first_name,
+                last=query.from_user.last_name,
+                username=None if not query.from_user.username else '@' + query.from_user.username,
+                mention=query.from_user.mention,
+                id=query.from_user.id
+            ),
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("ʜᴇʟᴘ", callback_data='help'),
-                 InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data='about')]
+                [InlineKeyboardButton("⛩️ SETTINGS ⛩️", callback_data="settings")],
+                [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/SECRECT_BOT_UPDATES")],
+                [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/SECRECT_BOT_UPDATES")],
+                [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/SECRECT_BOT_UPDATES")],
+                [
+                    InlineKeyboardButton("⚠️ ABOUT ⚠️", callback_data="about"),
+                    InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Lord_Vasudev_Krishna")
+                ]
+            ])
+        )
+
+    elif data == "settings":
+        channels = await db.show_channels()
+        admins = await db.get_all_admins()
+        banned_users = await db.get_ban_users()
+        del_timer = await db.get_del_timer()
+
+        auto_delete_mode = "Eɴᴀʙʟᴇᴅ" if del_timer > 0 else "Dɪsᴀʙʟᴇᴅ"
+        protect_content = "Eɴᴀʙʟᴇᴅ" if PROTECT_CONTENT else "Dɪsᴀʙʟᴇᴅ"
+        hide_caption = "Eɴᴀʙʟᴇᴅ" if CUSTOM_CAPTION else "Dɪsᴀʙʟᴇᴅ"
+        channel_button = "Eɴᴀʙʟᴇᴅ" if not DISABLE_CHANNEL_BUTTON else "Dɪsᴀʙʟᴇᴅ"
+
+        req_fsub_mode = "Dɪsᴀʙʟᴇᴅ"
+        if channels:
+            for cid in channels:
+                 mode = await db.get_channel_mode(cid)
+                 if mode == 'on':
+                     req_fsub_mode = "Eɴᴀʙʟᴇᴅ"
+                     break
+
+        stats_text = (
+            "<b>⚙️ Cᴏɴғɪɢᴜʀᴀᴛɪᴏɴs</b>\n"
+            f"◈ ᴛᴏᴛᴀʟ ғᴏʀᴄᴇ sᴜʙ ᴄʜᴀɴɴᴇʟ:  {len(channels)}\n"
+            f"◈ ᴛᴏᴛᴀʟ ᴀᴅᴍɪɴs:  {len(admins)}\n"
+            f"◈ ᴛᴏᴛᴀʟ ʙᴀɴɴᴇᴅ ᴜsᴇʀs:  {len(banned_users)}\n"
+            f"◈ ᴀᴜᴛᴏ ᴅᴇʟᴇᴛᴇ ᴍᴏᴅᴇ:  {auto_delete_mode}\n"
+            f"◈ ᴘʀᴏᴛᴇᴄᴛ ᴄᴏɴᴛᴇɴᴛ:  {protect_content}\n"
+            f"◈ ʜɪᴅᴇ ᴄᴀᴘᴛɪᴏɴ:  {hide_caption}\n"
+            f"◈ ᴄʜᴀɴɴᴇʟ ʙᴜᴛᴛᴏɴ:  {channel_button}\n"
+            f"◈ ʀᴇǫᴜᴇsᴛ ғsᴜʙ ᴍᴏᴅᴇ: {req_fsub_mode}"
+        )
+
+        await query.message.edit_caption(
+            caption=stats_text,
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton("‹ ʙᴀᴄᴋ", callback_data="start")]
             ])
         )
 

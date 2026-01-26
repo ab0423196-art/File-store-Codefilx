@@ -129,13 +129,14 @@ async def start_command(client: Client, message: Message):
     else:
         reply_markup = InlineKeyboardMarkup(
             [
-                    [InlineKeyboardButton("• ᴍᴏʀᴇ ᴄʜᴀɴɴᴇʟs •", url="https://t.me/+lWd3Ix22GPg0ZmI1")],
-
-    [
-                    InlineKeyboardButton("• ᴀʙᴏᴜᴛ", callback_data = "about"),
-                    InlineKeyboardButton('ʜᴇʟᴘ •', callback_data = "help")
-
-    ]
+                [InlineKeyboardButton("⛩️ SETTINGS ⛩️", callback_data="settings")],
+                [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/SECRECT_BOT_UPDATES")],
+                [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/SECRECT_BOT_UPDATES")],
+                [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/SECRECT_BOT_UPDATES")],
+                [
+                    InlineKeyboardButton("⚠️ ABOUT ⚠️", callback_data="about"),
+                    InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Lord_Vasudev_Krishna")
+                ]
             ]
         )
         await message.reply_photo(
