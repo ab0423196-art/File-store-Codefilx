@@ -4,6 +4,7 @@ import asyncio
 import pyromod.listen
 from pyrogram import Client
 from pyrogram.enums import ParseMode
+from pyrogram.types import BotCommand
 import sys
 from datetime import datetime
 #rohit_1888 on Tg
@@ -52,6 +53,16 @@ class Bot(Client):
         self.set_parse_mode(ParseMode.HTML)
         self.username = usr_bot_me.username
         self.LOGGER(__name__).info(f"Bot Running..! Made by @Lord_Vasudev_Krishna")   
+
+        try:
+            await self.set_bot_commands([
+                BotCommand("start", "Start Bot"),
+                BotCommand("about", "About Bot"),
+                BotCommand("help", "Bot Help")
+            ])
+            self.LOGGER(__name__).info("Bot Commands Set Successfully")
+        except Exception as e:
+            self.LOGGER(__name__).warning(f"Failed to set bot commands: {e}")
 
         # Start Web Server
         app = web.AppRunner(await web_server())
