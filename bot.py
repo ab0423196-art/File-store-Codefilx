@@ -56,9 +56,28 @@ class Bot(Client):
 
         try:
             await self.set_bot_commands([
-                BotCommand("start", "Start Bot"),
-                BotCommand("about", "About Bot"),
-                BotCommand("help", "Bot Help")
+                BotCommand("start", "Start the bot or get posts"),
+                BotCommand("batch", "Create link for more than one posts"),
+                BotCommand("custom_batch", "Create custom batch from channel/group"),
+                BotCommand("genlink", "Create link for one post"),
+                BotCommand("users", "View bot statistics"),
+                BotCommand("broadcast", "Broadcast any messages to bot users"),
+                BotCommand("dbroadcast", "Broadcast any messages with auto delete"),
+                BotCommand("stats", "Check your bot uptime"),
+                BotCommand("dlt_time", "Set auto delete time for files"),
+                BotCommand("check_dlt_time", "Check current delete time setting"),
+                BotCommand("ban", "Ban a user from using the bot"),
+                BotCommand("unban", "Unban a previously banned user"),
+                BotCommand("banlist", "Get list of banned users"),
+                BotCommand("addchnl", "Add a channel for force subscription"),
+                BotCommand("delchnl", "Remove a force subscribe channel"),
+                BotCommand("listchnl", "View all added force subscribe channels"),
+                BotCommand("fsub_mode", "Toggle force subscribe on or off"),
+                BotCommand("pbroadcast", "Pin a broadcast to all user's chat"),
+                BotCommand("add_admin", "Add a new admin"),
+                BotCommand("deladmin", "Remove an admin"),
+                BotCommand("admins", "List all current admins"),
+                BotCommand("delreq", "Removed users that left chnl and not getting request fsub")
             ])
             self.LOGGER(__name__).info("Bot Commands Set Successfully")
         except Exception as e:
