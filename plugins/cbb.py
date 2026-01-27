@@ -20,7 +20,13 @@ async def cb_handler(client: Bot, query: CallbackQuery):
 
     if data == "help":
         msg_text = await get_message("HELP_TXT")
-        text = msg_text.format(first=query.from_user.first_name)
+        text = msg_text.format(
+            first=query.from_user.first_name,
+            last=query.from_user.last_name,
+            username=None if not query.from_user.username else '@' + query.from_user.username,
+            mention=query.from_user.mention,
+            id=query.from_user.id
+        )
         markup = InlineKeyboardMarkup([
             [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
              InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data='close')]
@@ -32,7 +38,13 @@ async def cb_handler(client: Bot, query: CallbackQuery):
 
     elif data == "about":
         msg_text = await get_message("ABOUT_TXT")
-        text = msg_text.format(first=query.from_user.first_name)
+        text = msg_text.format(
+            first=query.from_user.first_name,
+            last=query.from_user.last_name,
+            username=None if not query.from_user.username else '@' + query.from_user.username,
+            mention=query.from_user.mention,
+            id=query.from_user.id
+        )
         markup = InlineKeyboardMarkup([
             [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
              InlineKeyboardButton('ᴄʟᴏꜱᴇ', callback_data='close')]
