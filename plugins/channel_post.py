@@ -7,9 +7,14 @@ from pyrogram.errors import FloodWait
 
 from bot import Bot
 from config import *
-from helper_func import encode, admin
+from helper_func import encode, admin, user_edit_state
 
-@Bot.on_message(filters.private & admin & ~filters.command(['start', 'commands','users','broadcast','batch', 'custom_batch', 'genlink','stats', 'dlt_time', 'check_dlt_time', 'dbroadcast', 'ban', 'unban', 'banlist', 'addchnl', 'delchnl', 'listchnl', 'fsub_mode', 'pbroadcast', 'add_admin', 'deladmin', 'admins', 'delreq']))
+async def not_editing_func(_, __, message):
+    return message.from_user.id not in user_edit_state
+
+not_editing = filters.create(not_editing_func)
+
+@Bot.on_message(filters.private & admin & not_editing & ~filters.command(['start', 'commands','users','broadcast','batch', 'custom_batch', 'genlink','stats', 'dlt_time', 'check_dlt_time', 'dbroadcast', 'ban', 'unban', 'banlist', 'addchnl', 'delchnl', 'listchnl', 'fsub_mode', 'pbroadcast', 'add_admin', 'deladmin', 'admins', 'delreq']))
 async def channel_post(client: Client, message: Message):
     reply_text = await message.reply_text("Please Wait...!", quote = True)
     try:

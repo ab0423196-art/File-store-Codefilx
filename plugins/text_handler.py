@@ -23,6 +23,25 @@ async def handle_text_settings(client: Client, message: Message):
     # If they use telegram formatting, they should copy-paste raw html or write tags.
     text_to_save = message.text
 
+    # Validate format string
+    try:
+        text_to_save.format(
+            first="Firstname",
+            last="Lastname",
+            username="@username",
+            mention="User",
+            id=123456789
+        )
+    except Exception as e:
+        await message.reply(
+            f"<b>❌ Invalid Format!</b>\n\n"
+            f"Your text contains invalid placeholders or syntax.\n"
+            f"Allowed placeholders: <code>{{first}}</code>, <code>{{last}}</code>, <code>{{username}}</code>, <code>{{mention}}</code>, <code>{{id}}</code>\n\n"
+            f"Error: <code>{e}</code>",
+            quote=True
+        )
+        return
+
     try:
         await db.set_config_text(key, text_to_save)
         del user_edit_state[user_id]

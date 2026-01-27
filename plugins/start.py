@@ -24,6 +24,7 @@ from pyrogram.errors import FloodWait, UserIsBlocked, InputUserDeactivated, User
 from bot import Bot
 from config import *
 from helper_func import *
+from helper_func import get_message
 from database.database import *
 
 BAN_SUPPORT = f"{BAN_SUPPORT}"
