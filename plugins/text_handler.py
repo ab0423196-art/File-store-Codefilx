@@ -43,8 +43,8 @@ async def handle_text_settings(client: Client, message: Message):
         return
 
     # Enforce collapsible quotes
-    if not text_to_save.startswith("<b><blockquote expandable>"):
-        text_to_save = f"<b><blockquote expandable>{text_to_save}</blockquote></b>"
+    if not text_to_save.startswith("<blockquote expandable>"):
+        text_to_save = f"<blockquote expandable><b>{text_to_save}</b></blockquote>"
 
     try:
         await db.set_config_text(key, text_to_save)

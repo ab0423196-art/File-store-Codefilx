@@ -12,7 +12,7 @@ from bot import Bot
 from config import *
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from database.database import *
-from helper_func import get_message, user_edit_state
+from helper_func import get_message, user_edit_state, check_admin
 
 @Bot.on_callback_query()
 async def cb_handler(client: Bot, query: CallbackQuery):
@@ -79,6 +79,9 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             await query.message.edit_text(text=text, reply_markup=markup)
 
     elif data == "settings":
+        if not await check_admin(None, client, query):
+            return await query.answer("⚠️ This menu is for Admins only!", show_alert=True)
+
         channels = await db.show_channels()
         admins = await db.get_all_admins()
         banned_users = await db.get_ban_users()
@@ -119,6 +122,9 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             await query.message.edit_text(text=stats_text, reply_markup=markup)
 
     elif data == "text_settings":
+        if not await check_admin(None, client, query):
+            return await query.answer("⚠️ This menu is for Admins only!", show_alert=True)
+
         text = "<b>📝 Cᴜsᴛᴏᴍ Tᴇxᴛ Sᴇᴛᴛɪɴɢs</b>\n\nSelect the message you want to customize:"
         markup = InlineKeyboardMarkup([
             [InlineKeyboardButton("Start Msg", callback_data="set_txt_START_MSG"),
@@ -133,6 +139,9 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             await query.message.edit_text(text=text, reply_markup=markup)
 
     elif data.startswith("set_txt_"):
+        if not await check_admin(None, client, query):
+            return await query.answer("⚠️ This menu is for Admins only!", show_alert=True)
+
         key = data.split("set_txt_")[1]
         user_id = query.from_user.id
         user_edit_state[user_id] = key
@@ -167,6 +176,9 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             pass
 
     elif data.startswith("rfs_ch_"):
+        if not await check_admin(None, client, query):
+            return await query.answer("⚠️ This menu is for Admins only!", show_alert=True)
+
         cid = int(data.split("_")[2])
         try:
             chat = await client.get_chat(cid)
