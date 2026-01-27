@@ -31,6 +31,7 @@ class Rohit:
         self.fsub_data = self.database['fsub']   
         self.rqst_fsub_data = self.database['request_forcesub']
         self.rqst_fsub_Channel_data = self.database['request_forcesub_channel']
+        self.config_texts = self.database['config_texts']
         
 
 
@@ -193,6 +194,19 @@ class Rohit:
         else:
             #print(f"Channel {channel_id} NOT found in the database.")
             return False
+
+
+    # CUSTOM TEXT CONFIGURATION
+    async def set_config_text(self, key: str, value: str):
+        await self.config_texts.update_one(
+            {'_id': key},
+            {'$set': {'value': value}},
+            upsert=True
+        )
+
+    async def get_config_text(self, key: str):
+        data = await self.config_texts.find_one({'_id': key})
+        return data.get('value') if data else None
 
 
 db = Rohit(DB_URI, DB_NAME)

@@ -139,9 +139,10 @@ async def start_command(client: Client, message: Message):
                 ]
             ]
         )
+        msg_text = await get_message("START_MSG")
         await message.reply_photo(
             photo=START_PIC,
-            caption=START_MSG.format(
+            caption=msg_text.format(
                 first=message.from_user.first_name,
                 last=message.from_user.last_name,
                 username=None if not message.from_user.username else '@' + message.from_user.username,
@@ -229,9 +230,10 @@ async def not_joined(client: Client, message: Message):
         except IndexError:
             pass
 
+        msg_text = await get_message("FORCE_MSG")
         await message.reply_photo(
             photo=FORCE_PIC,
-            caption=FORCE_MSG.format(
+            caption=msg_text.format(
                 first=message.from_user.first_name,
                 last=message.from_user.last_name,
                 username=None if not message.from_user.username else '@' + message.from_user.username,

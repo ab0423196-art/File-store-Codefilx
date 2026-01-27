@@ -12,49 +12,59 @@ from bot import Bot
 from config import *
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from database.database import *
+from helper_func import get_message, user_edit_state
 
 @Bot.on_callback_query()
 async def cb_handler(client: Bot, query: CallbackQuery):
     data = query.data
 
     if data == "help":
-        await query.message.edit_caption(
-            caption=HELP_TXT.format(first=query.from_user.first_name),
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
-                 InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data='close')]
-            ])
-        )
+        msg_text = await get_message("HELP_TXT")
+        text = msg_text.format(first=query.from_user.first_name)
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
+             InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data='close')]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=text, reply_markup=markup)
 
     elif data == "about":
-        await query.message.edit_caption(
-            caption=ABOUT_TXT.format(first=query.from_user.first_name),
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
-                 InlineKeyboardButton('ᴄʟᴏꜱᴇ', callback_data='close')]
-            ])
-        )
+        msg_text = await get_message("ABOUT_TXT")
+        text = msg_text.format(first=query.from_user.first_name)
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton('ʜᴏᴍᴇ', callback_data='start'),
+             InlineKeyboardButton('ᴄʟᴏꜱᴇ', callback_data='close')]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=text, reply_markup=markup)
 
     elif data == "start":
-        await query.message.edit_caption(
-            caption=START_MSG.format(
-                first=query.from_user.first_name,
-                last=query.from_user.last_name,
-                username=None if not query.from_user.username else '@' + query.from_user.username,
-                mention=query.from_user.mention,
-                id=query.from_user.id
-            ),
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("⛩️ SETTINGS ⛩️", callback_data="settings")],
-                [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/SECRECT_BOT_UPDATES")],
-                [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/SECRECT_BOT_UPDATES")],
-                [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/SECRECT_BOT_UPDATES")],
-                [
-                    InlineKeyboardButton("⚠️ ABOUT ⚠️", callback_data="about"),
-                    InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Lord_Vasudev_Krishna")
-                ]
-            ])
+        msg_text = await get_message("START_MSG")
+        text = msg_text.format(
+            first=query.from_user.first_name,
+            last=query.from_user.last_name,
+            username=None if not query.from_user.username else '@' + query.from_user.username,
+            mention=query.from_user.mention,
+            id=query.from_user.id
         )
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⛩️ SETTINGS ⛩️", callback_data="settings")],
+            [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/SECRECT_BOT_UPDATES")],
+            [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/SECRECT_BOT_UPDATES")],
+            [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/SECRECT_BOT_UPDATES")],
+            [
+                InlineKeyboardButton("⚠️ ABOUT ⚠️", callback_data="about"),
+                InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Lord_Vasudev_Krishna")
+            ]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=text, reply_markup=markup)
 
     elif data == "settings":
         channels = await db.show_channels()
@@ -87,12 +97,55 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             f"◈ ʀᴇǫᴜᴇsᴛ ғsᴜʙ ᴍᴏᴅᴇ: {req_fsub_mode}</blockquote>"
         )
 
-        await query.message.edit_caption(
-            caption=stats_text,
-            reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton("‹ ʙᴀᴄᴋ", callback_data="start")]
-            ])
-        )
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton("📝 TEXT SETTINGS", callback_data="text_settings")],
+            [InlineKeyboardButton("‹ ʙᴀᴄᴋ", callback_data="start")]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=stats_text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=stats_text, reply_markup=markup)
+
+    elif data == "text_settings":
+        text = "<b>📝 Cᴜsᴛᴏᴍ Tᴇxᴛ Sᴇᴛᴛɪɴɢs</b>\n\nSelect the message you want to customize:"
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton("Start Msg", callback_data="set_txt_START_MSG"),
+             InlineKeyboardButton("Force Sub Msg", callback_data="set_txt_FORCE_MSG")],
+            [InlineKeyboardButton("About Msg", callback_data="set_txt_ABOUT_TXT"),
+             InlineKeyboardButton("Help Msg", callback_data="set_txt_HELP_TXT")],
+            [InlineKeyboardButton("‹ ʙᴀᴄᴋ", callback_data="settings")]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=text, reply_markup=markup)
+
+    elif data.startswith("set_txt_"):
+        key = data.split("set_txt_")[1]
+        user_id = query.from_user.id
+        user_edit_state[user_id] = key
+
+        text = f"<b>Send the new text for {key}...</b>\n\n<i>HTML is supported.</i>\n<i>Send /cancel to cancel.</i>"
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton("‹ Cᴀɴᴄᴇʟ", callback_data="cancel_edit")]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=text, reply_markup=markup)
+
+    elif data == "cancel_edit":
+        user_id = query.from_user.id
+        if user_id in user_edit_state:
+            del user_edit_state[user_id]
+        text = "<b>❌ Eᴅɪᴛɪɴɢ Cᴀɴᴄᴇʟʟᴇᴅ.</b>"
+        markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton("‹ Bᴀᴄᴋ ᴛᴏ Sᴇᴛᴛɪɴɢs", callback_data="text_settings")]
+        ])
+        if query.message.media:
+            await query.message.edit_caption(caption=text, reply_markup=markup)
+        else:
+            await query.message.edit_text(text=text, reply_markup=markup)
 
     elif data == "close":
         await query.message.delete()

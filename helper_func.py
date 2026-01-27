@@ -14,6 +14,14 @@ from database.database import *
 
 
 
+async def get_message(key):
+    text = await db.get_config_text(key)
+    if text:
+        return text
+    return globals().get(key, "Message not found")
+
+user_edit_state = {}
+
 #used for cheking if a user is admin ~Owner also treated as admin level
 async def check_admin(filter, client, update):
     try:
