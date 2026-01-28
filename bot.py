@@ -77,7 +77,9 @@ class Bot(Client):
                 BotCommand("add_admin", "Add a new admin"),
                 BotCommand("deladmin", "Remove an admin"),
                 BotCommand("admins", "List all current admins"),
-                BotCommand("delreq", "Removed users that left chnl and not getting request fsub")
+                BotCommand("delreq", "Removed users that left chnl and not getting request fsub"),
+                BotCommand("extralink", "Add an external link for force sub"),
+                BotCommand("myextralink", "Manage external links")
             ])
             self.LOGGER(__name__).info("Bot Commands Set Successfully")
         except Exception as e:

@@ -32,6 +32,7 @@ class Rohit:
         self.rqst_fsub_data = self.database['request_forcesub']
         self.rqst_fsub_Channel_data = self.database['request_forcesub_channel']
         self.config_texts = self.database['config_texts']
+        self.extralinks_data = self.database['extralinks']
         
 
 
@@ -207,6 +208,20 @@ class Rohit:
     async def get_config_text(self, key: str):
         data = await self.config_texts.find_one({'_id': key})
         return data.get('value') if data else None
+
+
+    # EXTERNAL LINKS MANAGEMENT
+    async def add_extralink(self, url: str):
+        existing = await self.extralinks_data.find_one({'url': url})
+        if not existing:
+            await self.extralinks_data.insert_one({'url': url})
+
+    async def del_extralink(self, url: str):
+        await self.extralinks_data.delete_one({'url': url})
+
+    async def get_extralinks(self):
+        links_docs = await self.extralinks_data.find().to_list(length=None)
+        return [doc['url'] for doc in links_docs]
 
 
 db = Rohit(DB_URI, DB_NAME)

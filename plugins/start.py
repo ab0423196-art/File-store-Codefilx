@@ -170,13 +170,14 @@ async def not_joined(client: Client, message: Message):
     temp = await message.reply("<b><i>ᴡᴀɪᴛ ᴀ sᴇᴄ..</i></b>")
 
     user_id = message.from_user.id
-    buttons = []
+    collected_links = []
     count = 0
 
     try:
-        all_channels = await db.show_channels()  # Should return list of (chat_id, mode) tuples
-        for total, chat_id in enumerate(all_channels, start=1):
-            mode = await db.get_channel_mode(chat_id)  # fetch mode 
+        # 1. Process Force Sub Channels
+        all_channels = await db.show_channels()
+        for chat_id in all_channels:
+            mode = await db.get_channel_mode(chat_id)
 
             await message.reply_chat_action(ChatAction.TYPING)
 
@@ -188,8 +189,6 @@ async def not_joined(client: Client, message: Message):
                     else:
                         data = await client.get_chat(chat_id)
                         chat_data_cache[chat_id] = data
-
-                    name = data.title
 
                     # Generate proper invite link based on the mode
                     if mode == "on" and not data.username:
@@ -209,18 +208,35 @@ async def not_joined(client: Client, message: Message):
                                 expire_date=datetime.utcnow() + timedelta(seconds=FSUB_LINK_EXPIRY) if FSUB_LINK_EXPIRY else None)
                             link = invite.invite_link
 
-                    buttons.append([InlineKeyboardButton(text=name, url=link)])
+                    collected_links.append(link)
                     count += 1
                     await temp.edit(f"<b>{'! ' * count}</b>")
 
                 except Exception as e:
                     print(f"Error with chat {chat_id}: {e}")
-                    return await temp.edit(
-                        f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @rohit_1888</i></b>\n"
-                        f"<blockquote expandable><b>Rᴇᴀsᴏɴ:</b> {e}</blockquote>"
-                    )
+                    # We continue to next channel instead of breaking
+                    continue
 
-        # Retry Button
+        # 2. Process External Links
+        extralinks = await db.get_extralinks()
+        for url in extralinks:
+            collected_links.append(url)
+            count += 1
+            await temp.edit(f"<b>{'! ' * count}</b>")
+
+        # 3. Generate Buttons (2 per row)
+        buttons = []
+        row = []
+        for i, link in enumerate(collected_links, start=1):
+            btn = InlineKeyboardButton(text=f"Join Channel {i}", url=link)
+            row.append(btn)
+            if len(row) == 2:
+                buttons.append(row)
+                row = []
+        if row:
+            buttons.append(row)
+
+        # 4. Retry Button (Full Width)
         try:
             buttons.append([
                 InlineKeyboardButton(
@@ -230,6 +246,8 @@ async def not_joined(client: Client, message: Message):
             ])
         except IndexError:
             pass
+
+        await temp.delete() # Remove the loading message
 
         msg_text = await get_message("FORCE_MSG")
         await message.reply_photo(
