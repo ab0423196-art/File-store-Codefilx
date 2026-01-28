@@ -31,7 +31,7 @@ async def list_extralinks_cmd(client: Client, message: Message):
         display_url = url if len(url) < 30 else url[:27] + "..."
         buttons.append([InlineKeyboardButton(f"🗑️ {display_url}", callback_data=f"del_elink_{i}")])
 
-    buttons.append([InlineKeyboardButton("✖️ Close", callback_data="close_extralink")])
+    buttons.append([InlineKeyboardButton("✖️ Close", callback_data="close")])
 
     await message.reply(
         "<b>🔗 External Links Management</b>\n\nClick to delete:",
@@ -39,7 +39,7 @@ async def list_extralinks_cmd(client: Client, message: Message):
     )
 
 
-@Bot.on_callback_query(filters.regex(r"^del_elink_"))
+@Bot.on_callback_query(filters.regex(r"^del_elink_"), group=-1)
 async def delete_extralink_cb(client: Client, callback_query: CallbackQuery):
     try:
         index = int(callback_query.data.split("_")[-1])
@@ -56,7 +56,7 @@ async def delete_extralink_cb(client: Client, callback_query: CallbackQuery):
         if not new_links:
             await callback_query.message.edit(
                 "<b>🔗 External Links Management</b>\n\n❌ No external links left.",
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ Close", callback_data="close_extralink")]])
+                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("✖️ Close", callback_data="close")]])
             )
             return await callback_query.answer("Deleted!")
 
@@ -65,7 +65,7 @@ async def delete_extralink_cb(client: Client, callback_query: CallbackQuery):
             display_url = url if len(url) < 30 else url[:27] + "..."
             buttons.append([InlineKeyboardButton(f"🗑️ {display_url}", callback_data=f"del_elink_{i}")])
 
-        buttons.append([InlineKeyboardButton("✖️ Close", callback_data="close_extralink")])
+        buttons.append([InlineKeyboardButton("✖️ Close", callback_data="close")])
 
         await callback_query.message.edit_reply_markup(reply_markup=InlineKeyboardMarkup(buttons))
         await callback_query.answer(f"Deleted: {url_to_delete}")
@@ -73,8 +73,3 @@ async def delete_extralink_cb(client: Client, callback_query: CallbackQuery):
     except Exception as e:
         print(f"Error in delete_extralink_cb: {e}")
         await callback_query.answer("❌ Error occurred.", show_alert=True)
-
-
-@Bot.on_callback_query(filters.regex("^close_extralink"))
-async def close_extralink_cb(client: Client, callback_query: CallbackQuery):
-    await callback_query.message.delete()
