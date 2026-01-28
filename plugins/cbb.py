@@ -65,12 +65,12 @@ async def cb_handler(client: Bot, query: CallbackQuery):
         )
         markup = InlineKeyboardMarkup([
             [InlineKeyboardButton("⛩️ SETTINGS ⛩️", callback_data="settings")],
-            [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/SECRECT_BOT_UPDATES")],
-            [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/SECRECT_BOT_UPDATES")],
-            [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/SECRECT_BOT_UPDATES")],
+            [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/Anime_pies")],
+            [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/fire_toon_ongoing")],
+            [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/Animes_Index_Tamil")],
             [
                 InlineKeyboardButton("⚠️ ABOUT ⚠️", callback_data="about"),
-                InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Lord_Vasudev_Krishna")
+                InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Tele_promotions")
             ]
         ])
         if query.message.media:
