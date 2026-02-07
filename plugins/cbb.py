@@ -70,7 +70,7 @@ async def cb_handler(client: Bot, query: CallbackQuery):
             [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/+cQTJ2UejfY9mY2Q1")],
             [
                 InlineKeyboardButton(" ABOUT ", callback_data="about"),
-                InlineKeyboardButton(" PROMO ", url="https//t.me/Eren_Yeager_76")
+                InlineKeyboardButton(" PROMO ", url="https://t.me/Eren_Yeager_76")
             ]
         ])
         if query.message.media:
