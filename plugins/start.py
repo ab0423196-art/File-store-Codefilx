@@ -131,12 +131,12 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [InlineKeyboardButton("⛩️ SETTINGS ⛩️", callback_data="settings")],
-                [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/Anime_pies")],
-                [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/fire_toon_ongoing")],
-                [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/Animes_Index_Tamil")],
+                [InlineKeyboardButton("📢 MAIN CHANNEL", url="https://t.me/ABANIMEOFFICIAL")],
+                [InlineKeyboardButton("🌀 ONGOING ANIME", url="https://t.me/Dub_Anime_ZZ")],
+                [InlineKeyboardButton("🫧 ANIME INDEX", url="https://t.me/+cQTJ2UejfY9mY2Q1")],
                 [
-                    InlineKeyboardButton("⚠️ ABOUT ⚠️", callback_data="about"),
-                    InlineKeyboardButton("💰 PROMO 💰", url="https://t.me/Tele_promotions")
+                    InlineKeyboardButton(" ABOUT ", callback_data="about"),
+                    InlineKeyboardButton(" PROMO ", url="https://t.me/Eren_Yeager_76")
                 ]
             ]
         )
@@ -265,7 +265,7 @@ async def not_joined(client: Client, message: Message):
     except Exception as e:
         print(f"Final Error: {e}")
         await temp.edit(
-            f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @Lord_Vasudev_Krishna</i></b>\n"
+            f"<b><i>! Eʀʀᴏʀ, Cᴏɴᴛᴀᴄᴛ ᴅᴇᴠᴇʟᴏᴘᴇʀ ᴛᴏ sᴏʟᴠᴇ ᴛʜᴇ ɪssᴜᴇs @Eren_Yeager_76</i></b>\n"
             f"<blockquote expandable><b>Rᴇᴀsᴏɴ:</b> {e}</blockquote>"
         )
 
