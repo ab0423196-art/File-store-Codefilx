@@ -42,7 +42,7 @@ FORCE_PIC = os.environ.get("FORCE_PIC", "https://files.catbox.moe/6g9muu.jpg")
 
 #--------------------------------------------
 HELP_TXT = "<blockquote expandable><b>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ ᴡᴏʀᴋ ғᴏʀ @ABVerseBots\n\n❏ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs\n├/start : sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ\n├/about : ᴏᴜʀ Iɴғᴏʀᴍᴀᴛɪᴏɴ\n└/help : ʜᴇʟᴘ ʀᴇʟᴀᴛᴇᴅ ʙᴏᴛ\n\n sɪᴍᴘʟʏ ᴄʟɪᴄᴋ ᴏɴ ʟɪɴᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ᴊᴏɪɴ ʙᴏᴛʜ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ ᴛʜᴀᴛs ɪᴛ.....!\n\n ᴅᴇᴠᴇʟᴏᴘᴇᴅ ʙʏ <a href=https://t.me/ABVerseBots>ᴀʙ ᴠᴇʀsᴇ ʙᴏᴛs</a></b></blockquote>"
-ABOUT_TXT = "<blockquote expandable><b>◈ ᴄʀᴇᴀᴛᴏʀ: <a href=https://t.me/Eren_Yeager_76>Eren Yeager</a>\n◈ ꜰᴏᴜɴᴅᴇʀ ᴏꜰ : <a href=https://t.me/ABVerseBots>ᴀʙ ᴠᴇʀsᴇ ʙᴏᴛs</a>\n◈ ᴀɴɪᴍᴇ ᴄʜᴀɴɴᴇʟ : <a href=https://t.me/ABANIMEOFFICIAL>ᴀʙ ᴀɴɪᴍᴇ</a>\n◈ sᴇʀɪᴇs ᴄʜᴀɴɴᴇʟ : <a href=https://t.me/SECRECT_BOT_UPDATES>ᴡᴇʙsᴇʀɪᴇs </a>\n◈ ᴀɴɪᴍᴇ ᴄʜᴀɴɴᴇʟ 2 : <a href=https://t.me/SECRECT_BOT_UPDATES>SECRECT_BOT_UPDATES</a>\n◈ ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/SECRECT_BOT_UPDATES> Sᴇᴄʀᴇᴄᴛ 𝐁ᴏᴛ 𝐔ᴘᴅᴀᴛᴇs</a></b></blockquote>"
+ABOUT_TXT = "<blockquote expandable><b>◈ ᴄʀᴇᴀᴛᴏʀ: <a href=https://t.me/Eren_Yeager_76>Eren Yeager</a>\n◈ ꜰᴏᴜɴᴅᴇʀ ᴏꜰ : <a href=https://t.me/ABVerseBots>ᴀʙ ᴠᴇʀsᴇ ʙᴏᴛs</a>\n◈ ᴀɴɪᴍᴇ ᴄʜᴀɴɴᴇʟ : <a href=https://t.me/ABANIMEOFFICIAL>ᴀʙ ᴀɴɪᴍᴇ</a>\n◈ ᴏɴɢᴏɪɴɢ ᴀɴɪᴍᴇ : <a href=https://t.me/ABANIMEOFFICIAL>ᴀʙ ᴀɴɪᴍᴇ</a>\n◈ ᴀɴɪᴍᴇ ᴄʜᴀɴɴᴇʟ 2 : <a href=https://t.me/anime_in_hindiii_dub>ᴀɴɪᴍᴇ ɪɴ ʜɪɴᴅɪ</a>\n◈ ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/Eren_Yeager_76>ᴇʀᴇɴ ʏᴇᴀɢᴇʀ</a></b></blockquote>"
 #--------------------------------------------
 #--------------------------------------------
 START_MSG = os.environ.get("START_MESSAGE", "<blockquote expandable><b>HEY, {mention}. I HOPE YOU'RE FEELING THE POWER OF SHADOW MONARCH.</b></blockquote>")
