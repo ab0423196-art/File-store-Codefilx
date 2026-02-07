@@ -43,19 +43,19 @@ class Bot(Client):
         except Exception as e:
             self.LOGGER(__name__).warning(e)
             self.LOGGER(__name__).warning(f"Make Sure bot is Admin in DB Channel, and Double check the CHANNEL_ID Value, Current Value {CHANNEL_ID}")
-            self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/SECRECT_BOT_UPDATES for support")
+            self.LOGGER(__name__).info("\nBot Stopped. Join https://t.me/ABVerseBots for support")
             sys.exit()
 
         self.set_parse_mode(ParseMode.HTML)
-        self.LOGGER(__name__).info(f"Bot Running..!\n\nCreated by \nhttps://t.me/SECRECT_BOT_UPDATES")
-        self.LOGGER(__name__).info(f"""BOT DEPLOYED BY @Lord_Vasudev_Krishna""")
+        self.LOGGER(__name__).info(f"Bot Running..!\n\nCreated by \nhttps://t.me/ABVerseBots")
+        self.LOGGER(__name__).info(f"""BOT DEPLOYED BY @Eren_Yeager_76""")
 
         self.set_parse_mode(ParseMode.HTML)
         self.username = usr_bot_me.username
-        self.LOGGER(__name__).info(f"Bot Running..! Made by @Lord_Vasudev_Krishna")   
+        self.LOGGER(__name__).info(f"Bot Running..! Made by @ABVerseBots")   
 
         try:
-            await self.set_bot_commands([
+            await self.set_bot_commands([ 
                 BotCommand("start", "Start the bot or get posts"),
                 BotCommand("batch", "Create link for more than one posts"),
                 BotCommand("custom_batch", "Create custom batch from channel/group"),
@@ -91,7 +91,7 @@ class Bot(Client):
         await web.TCPSite(app, "0.0.0.0", PORT).start()
 
 
-        try: await self.send_message(OWNER_ID, text = f"<b><blockquote> Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ by @Lord_Vasudev_Krishna</blockquote></b>")
+        try: await self.send_message(OWNER_ID, text = f"<b><blockquote> Bᴏᴛ Rᴇsᴛᴀʀᴛᴇᴅ by @ABVerseBots</blockquote></b>")
         except: pass
 
     async def stop(self, *args):
@@ -102,7 +102,7 @@ class Bot(Client):
         """Run the bot."""
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.start())
-        self.LOGGER(__name__).info("Bot is now running. Thanks to @Lord_Vasudev_Krishna")
+        self.LOGGER(__name__).info("Bot is now running. Thanks to @ABVerseBots")
         try:
             loop.run_forever()
         except KeyboardInterrupt:
