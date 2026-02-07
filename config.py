@@ -18,22 +18,22 @@ from logging.handlers import RotatingFileHandler
 #rohit_1888 on Tg
 #--------------------------------------------
 #Bot token @Botfather
-TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "")
-APP_ID = int(os.environ.get("APP_ID", "24828197")) #Your API ID from my.telegram.org
-API_HASH = os.environ.get("API_HASH", "d36e278e89ebeb900aeda4128d413a77") #Your API Hash from my.telegram.org
+TG_BOT_TOKEN = os.environ.get("TG_BOT_TOKEN", "8369058793:AAFXdCZ1ZIGsC-YzXMOlRRaPpSggKVhoFrk")
+APP_ID = int(os.environ.get("APP_ID", "23264133")) #Your API ID from my.telegram.org
+API_HASH = os.environ.get("API_HASH", "945e5b76ce8550bebbeeaf5599e7ce58") #Your API Hash from my.telegram.org
 #--------------------------------------------
 
-CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1003769421100")) #Your db channel Id
-OWNER = os.environ.get("OWNER", "Lord_Vasudev_Krishna") # Owner username without @
-OWNER_ID = int(os.environ.get("OWNER_ID", "6209797666")) # Owner id
+CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "-1003785604580")) #Your db channel Id
+OWNER = os.environ.get("OWNER", "Eren_Yeager_76") # Owner username without @
+OWNER_ID = int(os.environ.get("OWNER_ID", "6883111123")) # Owner id
 #--------------------------------------------
 PORT = os.environ.get("PORT", "8001")
 #--------------------------------------------
-DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://musicbhaikon9910:krishna@cluster0.cwvegmt.mongodb.net/")
+DB_URI = os.environ.get("DATABASE_URL", "mongodb+srv://e55791917_db_user:RzXaeGE3AagxvADd@cluster0.ryscv19.mongodb.net/?appName=Cluster0")
 DB_NAME = os.environ.get("DATABASE_NAME", "blackwolffileshare1")
 #--------------------------------------------
 FSUB_LINK_EXPIRY = int(os.getenv("FSUB_LINK_EXPIRY", "300"))  # 0 means no expiry
-BAN_SUPPORT = os.environ.get("BAN_SUPPORT", "https://t.me/SECRECT_BOT_UPDATES")
+BAN_SUPPORT = os.environ.get("BAN_SUPPORT", "https://t.me/ABVerseBots")
 TG_BOT_WORKERS = int(os.environ.get("TG_BOT_WORKERS", "200"))
 #--------------------------------------------
 START_PIC = os.environ.get("START_PIC", "https://files.catbox.moe/4dcsg6.jpg")
@@ -41,7 +41,7 @@ FORCE_PIC = os.environ.get("FORCE_PIC", "https://files.catbox.moe/6g9muu.jpg")
 #--------------------------------------------
 
 #--------------------------------------------
-HELP_TXT = "<blockquote expandable><b>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ ᴡᴏʀᴋ ғᴏʀ @SECRECT_BOT_UPDATES\n\n❏ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs\n├/start : sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ\n├/about : ᴏᴜʀ Iɴғᴏʀᴍᴀᴛɪᴏɴ\n└/help : ʜᴇʟᴘ ʀᴇʟᴀᴛᴇᴅ ʙᴏᴛ\n\n sɪᴍᴘʟʏ ᴄʟɪᴄᴋ ᴏɴ ʟɪɴᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ᴊᴏɪɴ ʙᴏᴛʜ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ ᴛʜᴀᴛs ɪᴛ.....!\n\n ᴅᴇᴠᴇʟᴏᴘᴇᴅ ʙʏ <a href=https://t.me/SECRECT_BOT_UPDATES>SECRECT_BOT_UPDATES</a></b></blockquote>"
+HELP_TXT = "<blockquote expandable><b>ᴛʜɪs ɪs ᴀɴ ғɪʟᴇ ᴛᴏ ʟɪɴᴋ ʙᴏᴛ ᴡᴏʀᴋ ғᴏʀ @ABVerseBots\n\n❏ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs\n├/start : sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ\n├/about : ᴏᴜʀ Iɴғᴏʀᴍᴀᴛɪᴏɴ\n└/help : ʜᴇʟᴘ ʀᴇʟᴀᴛᴇᴅ ʙᴏᴛ\n\n sɪᴍᴘʟʏ ᴄʟɪᴄᴋ ᴏɴ ʟɪɴᴋ ᴀɴᴅ sᴛᴀʀᴛ ᴛʜᴇ ʙᴏᴛ ᴊᴏɪɴ ʙᴏᴛʜ ᴄʜᴀɴɴᴇʟs ᴀɴᴅ ᴛʀʏ ᴀɢᴀɪɴ ᴛʜᴀᴛs ɪᴛ.....!\n\n ᴅᴇᴠᴇʟᴏᴘᴇᴅ ʙʏ <a href=https://t.me/ABVerseBots>ᴀʙ ᴠᴇʀsᴇ ʙᴏᴛs</a></b></blockquote>"
 ABOUT_TXT = "<blockquote expandable><b>◈ ᴄʀᴇᴀᴛᴏʀ: <a href=https://t.me/Lord_Vasudev_Krishna>Lord Vasudev Krishna</a>\n◈ ꜰᴏᴜɴᴅᴇʀ ᴏꜰ : <a href=https://t.me/SECRECT_BOT_UPDATES>SECRECT_BOT_UPDATES</a>\n◈ ᴀɴɪᴍᴇ ᴄʜᴀɴɴᴇʟ : <a href=https://t.me/SECRECT_BOT_UPDATES>SECRECT_BOT_UPDATES</a>\n◈ sᴇʀɪᴇs ᴄʜᴀɴɴᴇʟ : <a href=https://t.me/SECRECT_BOT_UPDATES>ᴡᴇʙsᴇʀɪᴇs </a>\n◈ ᴀɴɪᴍᴇ ᴄʜᴀɴɴᴇʟ 2 : <a href=https://t.me/SECRECT_BOT_UPDATES>SECRECT_BOT_UPDATES</a>\n◈ ᴅᴇᴠᴇʟᴏᴘᴇʀ : <a href=https://t.me/SECRECT_BOT_UPDATES> Sᴇᴄʀᴇᴄᴛ 𝐁ᴏᴛ 𝐔ᴘᴅᴀᴛᴇs</a></b></blockquote>"
 #--------------------------------------------
 #--------------------------------------------
